@@ -137,7 +137,7 @@ class Equ:
                 self.x = x1
                 break
             if i > 1e+3:
-                print("WARNING")
+                print("WARNING", end=" ")
                 self.x = x1
                 break
             x0 = x1

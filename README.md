@@ -3,6 +3,8 @@ Chemistry Equilibrium
 
 * mytask.py - sample with plotly
 
+# Colab sample - https://colab.research.google.com/drive/1Cbnmqv4TI3XBPszsAaWozxZuT0lNkTcL?usp=sharing
+
 # Guide
 ```
 import ansover as ao 
