@@ -1,6 +1,20 @@
 import ansover as ao ## Библиотека для равновесия (ansolver.py в папке со скриптом)
 import sys
 import plotly.graph_objects as go ## Библиотека для графиков
+import numpy as np
+
+def d(mass):
+    a = 1
+    ans = []
+    for i in mass:
+        if a == 0:
+            ans.append(i - tmp)
+        a = 0
+        tmp = i
+
+    return ans
+
+acc = 0.1 # точность расчётов (шаг добавления NaOH)
 
 ka1 = 10 ** (-2.7) # Константа кислотности 1
 ka2 = 10 ** (-7.4) # Константа кислотности 2
@@ -8,16 +22,20 @@ ka2 = 10 ** (-7.4) # Константа кислотности 2
 eq = ao.Equ(ka1 = ka1, ka2 = ka2) # Создание объекта равновесие с указанием нужных констант (поддерживается 3х основная кислота + 3х основное основание + 2х основная кислота + сильное основание + сильная кислота)
 
 ph = []
-for i in range(0, 300): # Цикл добавления NaOH
+for i in np.arange(0, 300, acc): # Цикл добавления NaOH
     eq.calc(ca = (0.1 * 0.1) / (0.1 + i / 1000), cb = ((i / 1000) * 0.1) / (0.1 + i / 1000))
+
     ph.append(eq.get_pH())
 
 print(ph)
 
+ph = d(ph) # Для первой производной
+ph = d(ph) # Для второй производной
+
 ## Построение графика
 
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=list(range(0, 300)), y=ph,
+fig.add_trace(go.Scatter(x=list(np.arange((300/acc - len(ph))*acc, 300, acc)), y=ph,
                     mode='lines',
                     name='lines'))
 

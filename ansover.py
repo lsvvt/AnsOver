@@ -145,16 +145,16 @@ class Equ:
         ans = self.x
 
         self.a = (ca * (ans ** 3)) / (ans ** 3 + (ans ** 2) * ka1 + ans * ka1 * ka2 + ka1 * ka2 * ka3)
-        self.a1 = (ka1 * a) / ans
-        self.a2 = (ka1 * ka2 * a) / (ans ** 2)
-        self.a3 = (ka1 * ka2 * ka3 * a) / (ans ** 3)
+        self.a1 = (ka1 * self.a) / ans
+        self.a2 = (ka1 * ka2 * self.a) / (ans ** 2)
+        self.a3 = (ka1 * ka2 * ka3 * self.a) / (ans ** 3)
         self.d = (cd * (ans ** 2)) / (ans ** 2 + ans * kd1 + kd1 * kd2)
-        self.d1 = (kd1 * d) / ans
-        self.d2 = (kd1 * kd2 * d) / (ans ** 2)
+        self.d1 = (kd1 * self.d) / ans
+        self.d2 = (kd1 * kd2 * self.d) / (ans ** 2)
         self.g = (cg * (ans ** 3)) / (ans ** 3 + (ans ** 2) * kg1 + ans * kg1 * kg2 + kg1 * kg2 * kg3)
-        self.g1 = (kg1 * g) / ans
-        self.g2 = (kg1 * kg2 * g) / (ans ** 2)
-        self.g3 = (kg1 * kg2 * kg3 * g) / (ans ** 3)
+        self.g1 = (kg1 * self.g) / ans
+        self.g2 = (kg1 * kg2 * self.g) / (ans ** 2)
+        self.g3 = (kg1 * kg2 * kg3 * self.g) / (ans ** 3)
 
 
     def get_pH(self):
